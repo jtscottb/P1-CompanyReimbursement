@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.block {
+    display: inline-block;
+    text-align: left;
+}
+
+#start {
+    margin: auto;
+    text-align: center;
+}
