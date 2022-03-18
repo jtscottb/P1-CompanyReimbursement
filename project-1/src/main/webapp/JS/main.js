@@ -1,7 +1,7 @@
 var loc = "project-1/src/main/java/com/revature"
 function Login() {
     document.getElementById("start").innerHTML =
-    "<form action=../" + loc + "/Login method=post>"
+    "<form action=./Login method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname> <br> <br>"
 

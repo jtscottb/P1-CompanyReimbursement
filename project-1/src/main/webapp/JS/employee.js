@@ -3,7 +3,7 @@ function Logout() {
 }
 
 function SubmitReimbursement() {
-    "<form action=./SubmitReimbursement method=post>"
+    "<form action=/SubmitReimbursement method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname> <br> <br>"
 
