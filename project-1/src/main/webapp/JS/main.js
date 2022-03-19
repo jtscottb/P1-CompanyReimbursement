@@ -1,7 +1,18 @@
 function Login() {
+    var text = document.body.nodeType === Node.ELEMENT_NODE;
+    if(text) {
+        document.body.innerHTML +=
+        "<div class=block>"
+        + "<div id=start></div>"
+        + "</div>";
+    }
+    document.getElementsByTagName("head").innerHTML += 
+    "<title>Login</title>";
+
     document.getElementById("start").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
 
+    + "<p>Please sign in</p>"
     + "<form action=./Login method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname> <br> <br>"

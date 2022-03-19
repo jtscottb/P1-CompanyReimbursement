@@ -51,19 +51,19 @@ public class Register extends HttpServlet {
 		u.setLname(request.getParameter("lname").toUpperCase());
 		u.setEmail(request.getParameter("email"));
 		u.setRoleId(Integer.parseInt(request.getParameter("role")));
+		
+		
 		try {
 			s.register(u);
 			pw.write("<html>"
 					+ "<head>\r\n"
-					+ "    <meta charset=\"UTF-8\">\r\n"
-					+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
-					+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
-					+ "    <link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
+					+ "		<meta charset=\"UTF-8\">\r\n"
+					+ "		<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
+					+ "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
+					+ "		<link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
 					+ "</head>"
 					+ "<body onload=\"Login()\">"
-					+ "		<div class=block>"
-					+ "			<div id=start></div>"
-					+ "		</div>"
+
 					+ "		<script src=\"./JS/main.js\"></script>"
 					+ "</body>"
 					+ "</html>");
