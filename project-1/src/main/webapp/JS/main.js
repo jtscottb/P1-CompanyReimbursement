@@ -1,20 +1,28 @@
-var loc = "project-1/src/main/java/com/revature"
 function Login() {
     document.getElementById("start").innerHTML =
-    "<form action=./Login method=post>"
+    "<button onclick=reset()>Go Back</button> <br> <br>"
+
+    + "<form action=./Login method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname> <br> <br>"
 
     + "<label for=pword>Password</label> <br>"
     + "<input type=text id=pword name=pword> <br> <br>"
 
-    + "<input type=submit value=Enter>"
+    + "<input type=submit value=Login>"
     + "</form>";
 }
 
 function Register() {
     document.getElementById("start").innerHTML =
-    "<form action=./Register method=post>"
+    "<button onclick=reset()>Go Back</button> <br> <br>"
+
+    + "<form action=./Register method=post>"
+    + "<input type=radio id=role1 name=role value=1>"
+    + "<label for=role1>EMPLOYEE</label> &nbsp; &nbsp;"
+    + "<input type=radio id=role2 name=role value=2>"
+    + "<label for=role2>MANAGER</label> <br> <br>"
+
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname placeholder=user> <br> <br>"
 
@@ -30,9 +38,10 @@ function Register() {
     + "<label for=email>Email</label> <br>"
     + "<input type=text id=email name=email placeholder=user@email.com> <br> <br>"
 
-    + "<label for=role>Role</label> <br>"
-    + "<input type=text id=role name=role placeholder='(1) Employee, (2) Manager'> <br> <br>"
-
-    + "<input type=submit value=Enter>"
+    + "<input type=submit value=Register>"
     + "</form>";
+}
+
+function reset() {
+    window.location.href = "index.html";
 }
