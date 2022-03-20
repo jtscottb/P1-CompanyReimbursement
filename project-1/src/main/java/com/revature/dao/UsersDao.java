@@ -43,7 +43,7 @@ public class UsersDao {
 	public int updateUser(User u) {
 		String query = "update users "
 						+ "set username=?, password=?, firstname=?, lastname=?, email=?, role_id=?"
-						+ "where id=?";
+						+ "where userid=?";
 		int update = 0;
 
 		try {
@@ -66,13 +66,13 @@ public class UsersDao {
 	public User getUser(int id) {
 		User u = new User();
 		String query = "select * from users "
-						+ "inner join roles on users.role_id = roles.id "
-						+ "where id=" + id;
+						+ "inner join roles on users.role_id = roles.roleid "
+						+ "where userid=" + id;
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
 			if(rs.next()) {
-				u.setId(rs.getInt("id"));
+				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
 				u.setFname(rs.getString("firstname"));
@@ -91,7 +91,7 @@ public class UsersDao {
 	public User getUser(String uname, String pword) {
 		User u = new User();
 		String query = "select * from users "
-						+ "inner join roles on users.role_id = roles.id "
+						+ "inner join roles on users.role_id = roles.roleid "
 						+ "where username=?";
 		
 		try {
@@ -121,7 +121,7 @@ public class UsersDao {
 	public List<User> getAllEmployees() {
 		List<User> employees = new ArrayList<User>();
 		String query = "select * from users "
-						+ "inner join roles on users.role_id = roles.id";
+						+ "inner join roles on users.role_id = roles.roleid";
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);

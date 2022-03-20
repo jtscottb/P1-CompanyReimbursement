@@ -23,7 +23,7 @@ public class ReimbursementDao {
 	}
 	
 	public int addReimbursement(Reimbursement r) {
-		String query = "insert into reimbusement (amount, submitted, resolved, description, author, status_id, type_id) "
+		String query = "insert into reimbursement (amount, submitted, resolved, description, author, status_id, type_id) "
 						+ "values (?, ?, ?, ?, ?, ?, ?)";
 		int added = 0;
 		try {
@@ -31,9 +31,10 @@ public class ReimbursementDao {
 			pstmt.setDouble(1, r.getAmount());
 			pstmt.setObject(2, r.getSubmitted());
 			pstmt.setObject(3, r.getResolved());
-			pstmt.setInt(4, r.getAuthorId());
-			pstmt.setInt(5, r.getStatusId());
-			pstmt.setInt(6, r.getTypeId());
+			pstmt.setString(4, r.getDescription());
+			pstmt.setInt(5, r.getAuthorId());
+			pstmt.setInt(6, r.getStatusId());
+			pstmt.setInt(7, r.getTypeId());
 			added = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,8 +67,8 @@ public class ReimbursementDao {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 		UsersDao ud = new UsersDao();
 		String query = "select * from reimbursement "
-						+ "inner join status on reimbursement.status_id=status.id "
-						+ "inner join type on reimbursement.type_id=type.id";
+						+ "inner join status on reimbursement.status_id=status.statusid "
+						+ "inner join type on reimbursement.type_id=type.typeid";
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);

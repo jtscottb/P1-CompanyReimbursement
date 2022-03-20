@@ -32,14 +32,15 @@ public class EmployeeService {
 	}
 	
 	public String viewPendingRequests(User u) {
-		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
 		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		reimbursements = rd.getReimbursementsByUser(u.getId());
+		String table = null;
+		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
 			for(Reimbursement r : reimbursements) {
-				if(!r.getType().equals("PENDING")) {
-					reimbursements.remove(r);
+				if(r.getType().equals("PENDING")) {
+					myReimbursements.add(r);
 				}
 			}
 		} catch (NullPointerException e) {
@@ -47,19 +48,22 @@ public class EmployeeService {
 			System.out.println("No reimbursement requests made");
 			e.printStackTrace();
 		}
-		String table = t.generateHTMLTable(reimbursements);
+		if(!myReimbursements.isEmpty()) {
+			table = t.generateHTMLTable(myReimbursements);
+		}
 		return table;
 	}
 	
 	public String viewResolvedRequests(User u) {
-		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
 		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		reimbursements = rd.getReimbursementsByUser(u.getId());
+		String table = null;
+		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
 			for(Reimbursement r : reimbursements) {
-				if(r.getType().equals("PENDING")) {
-					reimbursements.remove(r);
+				if(!r.getType().equals("PENDING")) {
+					myReimbursements.add(r);
 				}
 			}
 		} catch (NullPointerException e) {
@@ -67,7 +71,9 @@ public class EmployeeService {
 			System.out.println("No reimbursement requests made");
 			e.printStackTrace();
 		}
-		String table = t.generateHTMLTable(reimbursements);
+		if(!myReimbursements.isEmpty()) {
+			table = t.generateHTMLTable(myReimbursements);
+		}
 		return table;
 	}
 	
