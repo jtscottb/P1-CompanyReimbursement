@@ -21,9 +21,9 @@ public class UsersDao {
 		con = ConnectionUtil.getConnection();
 	}
 	
-	public void addUser(User u) {
+	public int addUser(User u) {
 		String query = "insert into users (username, password, firstname, lastname, email, role_id) values (?, ?, ?, ?, ?, ?)";
-
+		int added = 0;
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, u.getUsername());
@@ -32,17 +32,19 @@ public class UsersDao {
 			pstmt.setString(4, u.getLname());
 			pstmt.setString(5, u.getEmail());
 			pstmt.setInt(6, u.getRoleId());
-			pstmt.executeUpdate();
+			added = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return added;
 	}
 	
-	public void update(User u) {
+	public int updateUser(User u) {
 		String query = "update users "
 						+ "set username=?, password=?, firstname=?, lastname=?, email=?, role_id=?"
 						+ "where id=?";
+		int update = 0;
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -53,11 +55,12 @@ public class UsersDao {
 			pstmt.setString(5, u.getEmail());
 			pstmt.setInt(6, u.getRoleId());
 			pstmt.setInt(7, u.getId());
-			pstmt.executeUpdate();
+			update = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return update;
 	}
 	
 	public User getUser(int id) {

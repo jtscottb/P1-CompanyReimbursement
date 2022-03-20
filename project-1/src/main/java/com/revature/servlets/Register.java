@@ -61,10 +61,12 @@ public class Register extends HttpServlet {
 					+ "		<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 					+ "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 					+ "		<link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
+					+ "		<script src=\"./JS/main.js\"></script>"
 					+ "</head>"
 					+ "<body onload=\"Login()\">"
-
-					+ "		<script src=\"./JS/main.js\"></script>"
+					+ "		<div class=block>"
+					+ "			<div id=start></div>"
+					+ "		</div>"
 					+ "</body>"
 					+ "</html>");
 		} catch (UsernameAlreadyExistsException e) {

@@ -3,20 +3,20 @@ package com.revature;
 import java.time.LocalDateTime;
 
 public class Reimbursement {
-	private Integer id;
-	private Double amount;
-	private LocalDateTime submitted;
-	private LocalDateTime resolved;
-	private String description;
+	public Integer id;
+	public Double amount;
+	public LocalDateTime submitted;
+	public LocalDateTime resolved;
+	public String description;
 	
-	private Integer authorId;
-	private String authorName;
-	private Integer resolverId;
-	private String resolverName;
-	private Integer statusId;
-	private String status;
-	private Integer typeId;
-	private String type;
+	public Integer authorId;
+	public String authorName;
+	public Integer resolverId;
+	public String resolverName;
+	public Integer statusId;
+	public String status;
+	public Integer typeId;
+	public String type;
 	
 	public Integer getId() {
 		return id;

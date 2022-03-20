@@ -1,14 +1,14 @@
 package com.revature;
 
 public class User {
-	private Integer id;
-	private String fname;
-	private String lname;
-	private String username;
-	private String password;
-	private String email;
-	private int roleId;
-	private String role;
+	public Integer id;
+	public String fname;
+	public String lname;
+	public String username;
+	public String password;
+	public String email;
+	public Integer roleId;
+	public String role;
 	
 	public Integer getId() {
 		return id;
@@ -46,17 +46,17 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 	public String getRole() {
-		return email;
+		return role;
 	}
 	public void setRole(String role) {
-		this.email = role;
+		this.role = role;
 	}
 	
 	@Override

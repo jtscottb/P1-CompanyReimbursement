@@ -22,10 +22,10 @@ public class ReimbursementDao {
 		con = ConnectionUtil.getConnection();
 	}
 	
-	public Reimbursement addReimbursement(Reimbursement r) {
+	public int addReimbursement(Reimbursement r) {
 		String query = "insert into reimbusement (amount, submitted, resolved, description, author, status_id, type_id) "
 						+ "values (?, ?, ?, ?, ?, ?, ?)";
-
+		int added = 0;
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setDouble(1, r.getAmount());
@@ -34,30 +34,32 @@ public class ReimbursementDao {
 			pstmt.setInt(4, r.getAuthorId());
 			pstmt.setInt(5, r.getStatusId());
 			pstmt.setInt(6, r.getTypeId());
-			pstmt.executeUpdate();
+			added = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return r;
+		return added;
 	}
 	
-	public void updateReimbursement(Reimbursement r) {
+	public int updateReimbursement(Reimbursement r) {
 		String query = "update reimbursement "
 						+ "set resolved=?, resolver=?, status_id=?, type_id=? "
 						+ "where id=?";
+		int update = 0;
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setObject(1, r.getResolved());
 			pstmt.setInt(2, r.getResolverId());
 			pstmt.setInt(3, r.getStatusId());
 			pstmt.setInt(4, r.getTypeId());
-			pstmt.executeUpdate();
+			update = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return update;
 	}
 	
 	public List<Reimbursement> getAllReimbursements() {
@@ -77,7 +79,9 @@ public class ReimbursementDao {
 				r.setDescription(rs.getString("description"));
 				r.setAuthorId(rs.getInt("author"));
 				r.setResolverId(rs.getInt("resolver"));
+				r.setTypeId(rs.getInt("type_id"));
 				r.setType(rs.getString("type"));
+				r.setStatusId(rs.getInt("status_id"));
 				r.setStatus(rs.getString("status"));
 				
 				String author = ud.getUser(r.getAuthorId()).getFname() + " " + ud.getUser(r.getAuthorId()).getLname();
@@ -116,7 +120,7 @@ public class ReimbursementDao {
 		return reimbursements;
 	}
 	
-	public List<Reimbursement> getReimbursementByType(String type) {
+	public List<Reimbursement> getReimbursementsByType(String type) {
 		List<Reimbursement> reimbursements = getAllReimbursements();
 		for(Reimbursement r : reimbursements) {
 			if(!r.getType().equals(type)) {

@@ -2,12 +2,6 @@ package com.revature.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +47,6 @@ public class Login extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		String action = (String) request.getAttribute("action");
 		User u = new User();
 		Startup s = new Startup();
 		
@@ -70,10 +63,10 @@ public class Login extends HttpServlet {
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 				+ "    <title>"+ role.toUpperCase() +" HOME</title>\r\n"
 				+ "    <link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
+				+ "		<script src=\"./JS/" + role.toLowerCase() + ".js\"></script>"
 				+ "</head>"
 				+ "<body>"
 				+ "		<h3 id=\"welcome\">WELCOME " + u.getFname() + " " + u.getLname() + "</h3>"
-				+ "		<script src=\"./JS/" + role.toLowerCase() + ".js\"></script>"
 				+ "</body>"
 				+ "</html>");
 		} catch (InvalidCredentialsException e) {

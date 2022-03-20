@@ -1,13 +1,5 @@
 function Login() {
     var text = document.body.nodeType === Node.ELEMENT_NODE;
-    if(text) {
-        document.body.innerHTML +=
-        "<div class=block>"
-        + "<div id=start></div>"
-        + "</div>";
-    }
-    document.getElementsByTagName("head").innerHTML += 
-    "<title>Login</title>";
 
     document.getElementById("start").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
@@ -29,7 +21,7 @@ function Register() {
     "<button onclick=reset()>Go Back</button> <br> <br>"
 
     + "<form action=./Register method=post>"
-    + "<input type=radio id=role1 name=role value=1>"
+    + "<input type=radio id=role1 name=role value=1 checked>"
     + "<label for=role1>EMPLOYEE</label> &nbsp; &nbsp;"
     + "<input type=radio id=role2 name=role value=2>"
     + "<label for=role2>MANAGER</label> <br> <br>"
