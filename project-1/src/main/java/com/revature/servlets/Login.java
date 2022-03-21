@@ -65,8 +65,11 @@ public class Login extends HttpServlet {
 				+ "    <link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
 				+ "		<script src=\"./JS/" + role.toLowerCase() + ".js\"></script>"
 				+ "</head>"
-				+ "<body>"
+				+ "<body onload=\"Load()\">"
 				+ "		<h3 id=\"welcome\">WELCOME " + u.getFname() + " " + u.getLname() + "</h3>"
+				+ "		<div id=block>\"\r\n"
+				+ "			<div id=choice></div>\"\r\n"
+				+ "		</div>"
 				+ "</body>"
 				+ "</html>");
 		} catch (InvalidCredentialsException e) {

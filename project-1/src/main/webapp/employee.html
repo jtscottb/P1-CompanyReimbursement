@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Homepage</title>
     <link rel="stylesheet" href="./CSS/main.css">
+    <script src="./JS/employee.js"></script>
 </head>
 <body>
     <!--
@@ -19,24 +19,18 @@
         An Employee receives an email when one of their reimbursement requests is resolved (optional)
     -->
     
-    <div class="block">
-        <div id="start">
+    <div id="block">
+        <div id="choice">
             <button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>
-            <br> <br>
 
             <button onclick=PendingRequests()>View Pending Requests</button>
-            <br> <br>
             <button onclick=ResolvedRequests()>View Resolved Requests</button>
-            <br> <br>
             <button onclick=Profile()>My Profile</button>
-            <br> <br>
             <button onclick=UpdateInfo()>Update Information</button>
-            <br> <br>
             
             <button onclick=Logout()>Logout</button>
         </div>
     </div>
 
-    <script src="./JS/employee.js"></script>
 </body>
 </html>

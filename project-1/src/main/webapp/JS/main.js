@@ -1,23 +1,23 @@
 function Login() {
     var text = document.body.nodeType === Node.ELEMENT_NODE;
 
-    document.getElementById("start").innerHTML =
+    document.getElementById("choice").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
 
-    + "<p>Please sign in</p>"
+    + "<h3>Please sign in</h3>"
     + "<form action=./Login method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname> <br> <br>"
 
     + "<label for=pword>Password</label> <br>"
-    + "<input type=text id=pword name=pword> <br> <br>"
+    + "<input type=password id=pword name=pword> <br> <br>"
 
     + "<input type=submit value=Login>"
     + "</form>";
 }
 
 function Register() {
-    document.getElementById("start").innerHTML =
+    document.getElementById("choice").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
 
     + "<form action=./Register method=post>"
@@ -30,7 +30,7 @@ function Register() {
     + "<input type=text id=uname name=uname placeholder=user> <br> <br>"
 
     + "<label for=pword>Password</label> <br>"
-    + "<input type=text id=pword name=pword placeholder=password> <br> <br>"
+    + "<input type=password id=pword name=pword placeholder=password> <br> <br>"
 
     + "<label for=fname>First Name</label> <br>"
     + "<input type=text id=fname name=fname placeholder='first name'> <br> <br>"
@@ -39,7 +39,7 @@ function Register() {
     + "<input type=text id=lname name=lname placeholder='last name'> <br> <br>"
 
     + "<label for=email>Email</label> <br>"
-    + "<input type=text id=email name=email placeholder=user@email.com> <br> <br>"
+    + "<input type=email id=email name=email placeholder=user@email.com> <br> <br>"
 
     + "<input type=submit value=Register>"
     + "</form>";

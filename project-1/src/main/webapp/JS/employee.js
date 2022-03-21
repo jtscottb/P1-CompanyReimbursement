@@ -3,15 +3,27 @@ function Logout() {
 }
 
 function SubmitReimbursement() {
-    "<form action=/SubmitReimbursement method=post>"
-    + "<label for=uname>Username</label> <br>"
-    + "<input type=text id=uname name=uname> <br> <br>"
+    document.getElementById('block').innerHTML +=
+    "<br><br>"
+    +"<div id=selection>"
+    + "<form action=./SubmitReimbursement method=post>"
+    + "<label for=amount>Amount</label> <br>"
+    + "<input type=text id=amount name=amount> <br> <br>"
 
-    + "<label for=pword>Password</label> <br>"
-    + "<input type=text id=pword name=pword> <br> <br>"
+    + "<label for=description>Description</label> <br>"
+    + "<textarea id=description name=description></textarea> <br> <br>"
 
-    + "<input type=submit value=Enter>"
-    + "</form>";
+    + "<label for=type>Type</label> <br>"
+    + "<select id=type name=type>"
+    + " <option value=1>Food</option>"
+    + " <option value=2>Lodging</option>"
+    + " <option value=3>Travel</option>"
+    + " <option value=4>Other</option>"
+    + "</select> <br> <br>"
+
+    + "<input type=submit value=Submit>"
+    + "</form>"
+    + "</div>";
 }
 
 function PendingRequests() {
@@ -30,25 +42,14 @@ function UpdateInfo() {
 
 }
 
-window.onload = function() {
-    var selectionDiv = "<div id='start'>"
+function Load() {
+    document.getElementById('choice').innerHTML =
         + "<button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>"
-        + "<br> <br>"
 
         + "<button onclick=PendingRequests()>View Pending Requests</button>"
-        + "<br> <br>"
         + "<button onclick=ResolvedRequests()>View Resolved Requests</button>"
-        + "<br> <br>"
         + "<button onclick=Profile()>My Profile</button>"
-        + "<br> <br>"
         + "<button onclick=UpdateInfo()>Update Information</button>"
-        + "<br> <br>"
             
-        + "<button onclick=Logout()>Logout</button>"
-        + "</div>";
-
-    var beginBlock = "<div class='block'>";
-    var endBlock = "</div>"
-
-    document.body.innerHTML += beginBlock + selectionDiv + endBlock;
+        + "<button onclick=Logout()>Logout</button>";
 }

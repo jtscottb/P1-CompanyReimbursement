@@ -3,12 +3,23 @@ body {
     color: white;
 }
 
-.block {
+#block {
     display: inline-block;
     text-align: left;
 }
 
-#start {
+#choice {
     margin: auto;
     text-align: center;
+}
+
+#selection {
+    text-align: left;
+}
+
+#description
+{
+    height: 100px;
+    width: 300px;
+    vertical-align: top;
 }

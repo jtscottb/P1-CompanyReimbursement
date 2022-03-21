@@ -64,8 +64,8 @@ public class Register extends HttpServlet {
 					+ "		<script src=\"./JS/main.js\"></script>"
 					+ "</head>"
 					+ "<body onload=\"Login()\">"
-					+ "		<div class=block>"
-					+ "			<div id=start></div>"
+					+ "		<div id=block>"
+					+ "			<div id=choice></div>"
 					+ "		</div>"
 					+ "</body>"
 					+ "</html>");
