@@ -25,6 +25,7 @@ public class Table {
 					data.append("<td>").append(val).append("</td>\n");
 				}
 				rows.append("<tr>\n").append(data).append("</tr>\n");
+				data = new StringBuffer("");
 			}
 		} catch(IllegalAccessException e) {
 			e.printStackTrace();
@@ -36,19 +37,19 @@ public class Table {
 	public String generateHTMLTable(Object o) {
 		int start = o.toString().indexOf("[");
 		int end = o.toString().lastIndexOf("]");
-		String[] s = o.toString().substring(start+1, end).split(" ");
+		String[] s = o.toString().substring(start+1, end).split(",");
 		
 		StringBuffer table = new StringBuffer("<table>");
 		StringBuffer columns = new StringBuffer();
 		StringBuffer rows = new StringBuffer();
 		StringBuffer data = new StringBuffer();
 		for(int i = 0; i < s.length; i++) {
-			String title = s[i].split("=")[0];
+			String title = s[i].split("=")[0].trim();
 			columns.append("<th>").append(title).append("</th>\n");
 		}
 		rows.append("\n<tr>\n").append(columns).append("</tr>\n");
 		for(int i = 0; i < s.length; i++) {
-			data.append("<td>").append(s[i].split("=")[1]).append("</td>\n");
+			data.append("<td>").append(s[i].split("=")[1].trim()).append("</td>\n");
 		}
 		rows.append("<tr>\n").append(data).append("</tr>\n");
 		table.append(rows).append("</table>");

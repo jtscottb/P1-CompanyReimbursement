@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.Reimbursement;
-import com.revature.Table;
 import com.revature.User;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dao.UsersDao;
@@ -26,31 +25,37 @@ public class ManagerService {
 		return updated;
 	}
 	
-	public String viewAllRequestsByType(String type) {
+	public List<Reimbursement> viewAllRequestsByStatus(int status) {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		reimbursements = rd.getReimbursementsByType(type.toUpperCase());
-		String table = t.generateHTMLTable(reimbursements);
-		return table;
+		try {
+			reimbursements = rd.getReimbursementsByStatus(status);
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			System.out.println("No reimbursements by that type");
+			e.printStackTrace();
+		}
+		return reimbursements;
 	}
 	
-	public String viewAllEmployees() {
+	public List<User> viewAllEmployees() {
 		List<User> users = new ArrayList<User>();
-		Table t = new Table();
 		UsersDao ud = new UsersDao();
 		users = ud.getAllEmployees();
-		String table = t.generateHTMLTable(users);
-		return table;
+		return users;
 	}
 	
-	public String viewEmployeeRequests(User u) {
+	public List<Reimbursement> viewEmployeeRequests(User u) {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		reimbursements = rd.getReimbursementsByUser(u.getId());
-		String table = t.generateHTMLTable(reimbursements);
-		return table;
+		try {
+			reimbursements = rd.getReimbursementsByUser(u.getId());
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			System.out.println("No reimbursements by that type");
+			e.printStackTrace();
+		}
+		return reimbursements;
 	}
 	
 }

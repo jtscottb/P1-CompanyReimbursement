@@ -99,7 +99,7 @@ public class UsersDao {
 			pstmt.setString(1, uname);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				u.setId(rs.getInt("id"));
+				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
 				u.setFname(rs.getString("firstname"));
@@ -127,7 +127,7 @@ public class UsersDao {
 			rs = stmt.executeQuery(query);
 			while(rs.next()) {
 				User u = new User();
-				u.setId(rs.getInt("id"));
+				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
 				u.setFname(rs.getString("firstname"));

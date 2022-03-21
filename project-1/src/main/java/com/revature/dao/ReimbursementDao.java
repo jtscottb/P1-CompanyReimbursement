@@ -55,6 +55,7 @@ public class ReimbursementDao {
 			pstmt.setInt(2, r.getResolverId());
 			pstmt.setInt(3, r.getStatusId());
 			pstmt.setInt(4, r.getTypeId());
+			pstmt.setInt(5, r.getId());
 			update = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -113,22 +114,24 @@ public class ReimbursementDao {
 	
 	public List<Reimbursement> getReimbursementsByUser(int id) {
 		List<Reimbursement> reimbursements = getAllReimbursements();
+		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
 		for(Reimbursement r : reimbursements) {
-			if(!r.getAuthorId().equals(id)) {
-				reimbursements.remove(r);
+			if(r.getAuthorId().equals(id)) {
+				myReimbursements.add(r);
 			}
 		}
-		return reimbursements;
+		return myReimbursements;
 	}
 	
-	public List<Reimbursement> getReimbursementsByType(String type) {
+	public List<Reimbursement> getReimbursementsByStatus(int status) {
 		List<Reimbursement> reimbursements = getAllReimbursements();
+		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
 		for(Reimbursement r : reimbursements) {
-			if(!r.getType().equals(type)) {
-				reimbursements.remove(r);
+			if(r.getStatusId().equals(status)) {
+				myReimbursements.add(r);
 			}
 		}
-		return reimbursements;
+		return myReimbursements;
 	}
 	
 }

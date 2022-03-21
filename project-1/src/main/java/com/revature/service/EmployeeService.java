@@ -1,12 +1,9 @@
 package com.revature.service;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import com.revature.Reimbursement;
-import com.revature.Table;
 import com.revature.User;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dao.UsersDao;
@@ -31,15 +28,13 @@ public class EmployeeService {
 		return submitted;
 	}
 	
-	public String viewPendingRequests(User u) {
+	public List<Reimbursement> viewPendingRequests(User u) {
 		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
-		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		String table = null;
 		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
 			for(Reimbursement r : reimbursements) {
-				if(r.getType().equals("PENDING")) {
+				if(r.getStatusId().equals(3)) {
 					myReimbursements.add(r);
 				}
 			}
@@ -48,21 +43,16 @@ public class EmployeeService {
 			System.out.println("No reimbursement requests made");
 			e.printStackTrace();
 		}
-		if(!myReimbursements.isEmpty()) {
-			table = t.generateHTMLTable(myReimbursements);
-		}
-		return table;
+		return myReimbursements;
 	}
 	
-	public String viewResolvedRequests(User u) {
+	public List<Reimbursement> viewResolvedRequests(User u) {
 		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
-		Table t = new Table();
 		ReimbursementDao rd = new ReimbursementDao();
-		String table = null;
 		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
 			for(Reimbursement r : reimbursements) {
-				if(!r.getType().equals("PENDING")) {
+				if(!r.getStatus().equals("PENDING")) {
 					myReimbursements.add(r);
 				}
 			}
@@ -71,18 +61,13 @@ public class EmployeeService {
 			System.out.println("No reimbursement requests made");
 			e.printStackTrace();
 		}
-		if(!myReimbursements.isEmpty()) {
-			table = t.generateHTMLTable(myReimbursements);
-		}
-		return table;
+		return myReimbursements;
 	}
 	
-	public String viewInfo(int id) {
+	public User viewInfo(int id) {
 		UsersDao ud = new UsersDao();
-		Table t = new Table();
 		User u = ud.getUser(id);
-		String table = t.generateHTMLTable(u);
-		return table.toString();
+		return u;
 	}
 	
 	public boolean updateInfo(User u) {
