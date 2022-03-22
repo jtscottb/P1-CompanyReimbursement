@@ -1,10 +1,17 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.revature.Table;
+import com.revature.User;
+import com.revature.dao.UsersDao;
+import com.revature.service.EmployeeService;
 
 /**
  * Servlet implementation class UpdateInfo
@@ -33,7 +40,28 @@ public class UpdateInfo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setContentType("text/html");
+		PrintWriter pw = response.getWriter();
+		Table t = new Table();
+		EmployeeService es = new EmployeeService();
+		UsersDao ud = new UsersDao();
+		User user = ud.getCurrentUser();
+		
+		pw.write("<html>"
+				+ "<head>\r\n"
+				+ "		<meta charset=\"UTF-8\">\r\n"
+				+ "		<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
+				+ "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
+				+ "		<link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
+				+ "		<script src=\"./JS/" + user.getRole().toLowerCase() + ".js\"></script>"
+				+ "</head>"
+				+ "<body onload=\"Load()\">"
+				+ "		<div id=block>"
+				+ "			<div id=choice></div>"
+				+ "		</div>"
+				+ "		<div id=selection></div>"
+				+ "</body>"
+				+ "</html>");
 	}
 
 }

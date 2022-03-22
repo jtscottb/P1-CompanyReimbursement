@@ -69,8 +69,8 @@ public class Login extends HttpServlet {
 				+ "		<h3 id=\"welcome\">WELCOME " + u.getFirstName() + " " + u.getLastName() + "</h3>"
 				+ "		<div id=block>\r\n"
 				+ "			<div id=choice></div>\r\n"
-				+ "			<div id=selection></div>\r\n"
 				+ "		</div>"
+				+ "		<div id=selection></div>\r\n"
 				+ "</body>"
 				+ "</html>");
 		} catch (InvalidCredentialsException e) {

@@ -51,8 +51,8 @@ public class MyResolvedRequests extends HttpServlet {
 				+ "<body onload=\"Load()\">"
 				+ "		<div id=block>"
 				+ "			<div id=choice></div>"
-				+ "			<div id=selection>" + table + "</div>"
 				+ "		</div>"
+				+ "		<div id=selection>" + table + "</div>"
 				+ "</body>"
 				+ "</html>");
 	}

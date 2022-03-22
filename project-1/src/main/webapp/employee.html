@@ -21,23 +21,22 @@
     
     <div id="block">
         <div id="choice">
-            <form action="./MyPendingRequests" method="get"></form>
             <button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>
 
             <form action="./MyPendingRequests" method="get">
-                <button onclick=PendingRequests()>View Pending Requests</button>
+                <button>View Pending Requests</button>
             </form>
             <form action="./MyResolvedRequests" method="get">
-                <button onclick=ResolvedRequests()>View Resolved Requests</button>
+                <button>View Resolved Requests</button>
             </form>
             <form action="./MyProfile" method="get">
-                <button onclick=Profile()>My Profile</button>
+                <button>My Profile</button>
             </form>
-            <button onsubmit=UpdateInfo()>Update Information</button>
+            <button onclick=UpdateInfo()>Update Information</button>
             
             <button onclick=Logout()>Logout</button>
         </div>
     </div>
-
+    <div id="selection"></div>
 </body>
 </html>

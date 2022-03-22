@@ -36,10 +36,6 @@ function Profile() {
 
 }
 
-function UpdateSetup() {
-    window.location.href = "/UpdateSetup";
-}
-
 function UpdateInfo() {
     document.getElementById("selection").innerHTML =
     "<br><br>"
@@ -77,6 +73,6 @@ function Load() {
         + " <button onclick=Profile()>My Profile</button>"
         + "</form>"
         + "<button onclick=UpdateInfo()>Update Information</button>"
-            
+        + "<br>"
         + "<button onclick=Logout()>Logout</button>";
 }
