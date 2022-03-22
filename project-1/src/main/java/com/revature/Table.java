@@ -1,6 +1,5 @@
 package com.revature;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,25 +10,30 @@ public class Table {
 		StringBuffer columns = new StringBuffer();
 		StringBuffer rows = new StringBuffer();
 		StringBuffer data = new StringBuffer();
-		Field[] fields = list.get(0).getClass().getFields();
-		for(Field f : fields) {
-			String header = f.toString().substring(f.toString().lastIndexOf(".")+1);
-			columns.append("<th>").append(header).append("</th>\n");
+		
+		Object o = list.get(0);
+		int start = o.toString().indexOf("[");
+		int stop = o.toString().lastIndexOf("]");
+		String[] s = o.toString().substring(start+1, stop).split(",");
+		for(int i = 0; i < s.length; i++) {
+			String title = s[i].split("=", 2)[0].trim();
+			columns.append("<th>").append(title).append("</th>\n");
 		}
 		rows.append("\n<tr>\n").append(columns).append("</tr>\n");
-		try {
-			for(Object o : list) {
-				for(int i = 0; i < fields.length; i++) {
-					Object value = fields[i].get(o);
-					String val = Objects.isNull(value) ? "null" : value.toString();
-					data.append("<td>").append(val).append("</td>\n");
-				}
-				rows.append("<tr>\n").append(data).append("</tr>\n");
-				data = new StringBuffer("");
+		
+		for(Object obj : list) {
+			int begin = obj.toString().indexOf("[");
+			int end = obj.toString().lastIndexOf("]");
+			s = obj.toString().substring(begin+1, end).split(",");
+			for(int i = 0; i < s.length; i++) {
+				String value = s[i].split("=", 2)[1].trim();
+				String val = Objects.isNull(value) ? "null" : value;
+				data.append("<td>").append(val).append("</td>\n");
 			}
-		} catch(IllegalAccessException e) {
-			e.printStackTrace();
+			rows.append("<tr>\n").append(data).append("</tr>\n");
+			data = new StringBuffer("");
 		}
+		
 		table.append(rows).append("</table>");
 		return table.toString();
 	}

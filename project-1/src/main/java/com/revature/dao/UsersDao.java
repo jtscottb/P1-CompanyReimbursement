@@ -28,8 +28,8 @@ public class UsersDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, u.getUsername());
 			pstmt.setString(2, u.getPassword());
-			pstmt.setString(3, u.getFname());
-			pstmt.setString(4, u.getLname());
+			pstmt.setString(3, u.getFirstName());
+			pstmt.setString(4, u.getLastName());
 			pstmt.setString(5, u.getEmail());
 			pstmt.setInt(6, u.getRoleId());
 			added = pstmt.executeUpdate();
@@ -50,8 +50,8 @@ public class UsersDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, u.getUsername());
 			pstmt.setString(2, u.getPassword());
-			pstmt.setString(3, u.getFname());
-			pstmt.setString(4, u.getLname());
+			pstmt.setString(3, u.getFirstName());
+			pstmt.setString(4, u.getLastName());
 			pstmt.setString(5, u.getEmail());
 			pstmt.setInt(6, u.getRoleId());
 			pstmt.setInt(7, u.getId());
@@ -75,8 +75,8 @@ public class UsersDao {
 				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
-				u.setFname(rs.getString("firstname"));
-				u.setLname(rs.getString("lastname"));
+				u.setFirstName(rs.getString("firstname"));
+				u.setLastName(rs.getString("lastname"));
 				u.setEmail(rs.getString("email"));
 				u.setRoleId(rs.getInt("role_id"));
 				u.setRole(rs.getString("role"));
@@ -102,8 +102,8 @@ public class UsersDao {
 				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
-				u.setFname(rs.getString("firstname"));
-				u.setLname(rs.getString("lastname"));
+				u.setFirstName(rs.getString("firstname"));
+				u.setLastName(rs.getString("lastname"));
 				u.setEmail(rs.getString("email"));
 				u.setRoleId(rs.getInt("role_id"));
 				u.setRole(rs.getString("role"));
@@ -130,8 +130,8 @@ public class UsersDao {
 				u.setId(rs.getInt("userid"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
-				u.setFname(rs.getString("firstname"));
-				u.setLname(rs.getString("lastname"));
+				u.setFirstName(rs.getString("firstname"));
+				u.setLastName(rs.getString("lastname"));
 				u.setEmail(rs.getString("email"));
 				u.setRoleId(rs.getInt("role_id"));
 				u.setRole(rs.getString("role"));
@@ -142,5 +142,52 @@ public class UsersDao {
 			e.printStackTrace();
 		}
 		return employees;
+	}
+	
+	public void setCurrentUser(User u) {
+		String query = "update users set active=1 where userid=" + u.getId().intValue();
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(query);
+		} catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public User getCurrentUser() {
+		User user = new User();
+		String query = "select * from users "
+						+ "inner join roles on users.role_id=roles.roleid "
+						+ "where active is true";
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			if(rs.next()) {
+				user.setId(rs.getInt("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setEmail(rs.getString("email"));
+				user.setRoleId(rs.getInt("role_id"));
+				user.setRole(rs.getString("role"));
+			}
+		} catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public void removeCurrentUser() {
+		String query = "update users set active=0 where active is true";
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(query);
+		} catch(SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

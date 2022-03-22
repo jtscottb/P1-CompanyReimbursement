@@ -1,14 +1,15 @@
 package com.revature;
 
 public class User {
-	public Integer id;
-	public String fname;
-	public String lname;
-	public String username;
-	public String password;
-	public String email;
-	public Integer roleId;
-	public String role;
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private String username;
+	private String password;
+	private String email;
+	private Integer roleId;
+	private String role;
+	private boolean active;
 	
 	public Integer getId() {
 		return id;
@@ -16,17 +17,17 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getFname() {
-		return fname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFirstName(String fname) {
+		this.firstName = fname;
 	}
-	public String getLname() {
-		return lname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setLastName(String lname) {
+		this.lastName = lname;
 	}
 	public String getUsername() {
 		return username;
@@ -58,11 +59,17 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public boolean getActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", username=" + username + ", password="
-				+ password + ", email=" + email + ", roleId=" + roleId +  ", role=" + role + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", role=" + role + "]";
 	}
 	
 }

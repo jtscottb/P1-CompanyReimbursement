@@ -3,9 +3,8 @@ function Logout() {
 }
 
 function SubmitReimbursement() {
-    document.getElementById('block').innerHTML +=
+    document.getElementById('selection').innerHTML =
     "<br><br>"
-    +"<div id=selection>"
     + "<form action=./SubmitReimbursement method=post>"
     + "<label for=amount>Amount</label> <br>"
     + "<input type=text id=amount name=amount> <br> <br>"
@@ -22,8 +21,7 @@ function SubmitReimbursement() {
     + "</select> <br> <br>"
 
     + "<input type=submit value=Submit>"
-    + "</form>"
-    + "</div>";
+    + "</form>";
 }
 
 function PendingRequests() {
@@ -38,17 +36,46 @@ function Profile() {
 
 }
 
-function UpdateInfo() {
+function UpdateSetup() {
+    window.location.href = "/UpdateSetup";
+}
 
+function UpdateInfo() {
+    document.getElementById("selection").innerHTML =
+    "<br><br>"
+    + "<form action=./Update method=post>"
+    + "<label for=uname>Username</label> <br>"
+    + "<input type=text id=uname name=uname placeholder=user> <br> <br>"
+
+    + "<label for=pword>Password</label> <br>"
+    + "<input type=password id=pword name=pword placeholder=password> <br> <br>"
+
+    + "<label for=fname>First Name</label> <br>"
+    + "<input type=text id=fname name=fname placeholder='first name'> <br> <br>"
+
+    + "<label for=lname>Last Name</label> <br>"
+    + "<input type=text id=lname name=lname placeholder='last name'> <br> <br>"
+
+    + "<label for=email>Email</label> <br>"
+    + "<input type=email id=email name=email placeholder=user@email.com> <br> <br>"
+
+    + "<input type=submit value=Update>"
+    + "</form>";
 }
 
 function Load() {
     document.getElementById('choice').innerHTML =
-        + "<button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>"
+        "<button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>"
 
-        + "<button onclick=PendingRequests()>View Pending Requests</button>"
-        + "<button onclick=ResolvedRequests()>View Resolved Requests</button>"
-        + "<button onclick=Profile()>My Profile</button>"
+        + "<form action=./MyPendingRequests method=get>"
+        + " <button onclick=PendingRequests()>View Pending Requests</button>"
+        + "</form>"
+        + "<form action=./MyResolvedRequests method=get>"
+        + " <button onclick=ResolvedRequests()>View Resolved Requests</button>"
+        + "</form>"
+        + "<form action=./MyProfile method=get>"
+        + " <button onclick=Profile()>My Profile</button>"
+        + "</form>"
         + "<button onclick=UpdateInfo()>Update Information</button>"
             
         + "<button onclick=Logout()>Logout</button>";

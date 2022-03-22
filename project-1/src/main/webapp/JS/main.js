@@ -1,6 +1,4 @@
 function Login() {
-    var text = document.body.nodeType === Node.ELEMENT_NODE;
-
     document.getElementById("choice").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
 

@@ -29,7 +29,7 @@ public class EmployeeService {
 	}
 	
 	public List<Reimbursement> viewPendingRequests(User u) {
-		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<>();
 		ReimbursementDao rd = new ReimbursementDao();
 		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
@@ -47,12 +47,12 @@ public class EmployeeService {
 	}
 	
 	public List<Reimbursement> viewResolvedRequests(User u) {
-		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<>();
 		ReimbursementDao rd = new ReimbursementDao();
 		List<Reimbursement> reimbursements = rd.getReimbursementsByUser(u.getId());
 		try {
 			for(Reimbursement r : reimbursements) {
-				if(!r.getStatus().equals("PENDING")) {
+				if(!r.getStatusId().equals(3)) {
 					myReimbursements.add(r);
 				}
 			}

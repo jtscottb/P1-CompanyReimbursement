@@ -66,9 +66,10 @@ public class Login extends HttpServlet {
 				+ "		<script src=\"./JS/" + role.toLowerCase() + ".js\"></script>"
 				+ "</head>"
 				+ "<body onload=\"Load()\">"
-				+ "		<h3 id=\"welcome\">WELCOME " + u.getFname() + " " + u.getLname() + "</h3>"
-				+ "		<div id=block>\"\r\n"
-				+ "			<div id=choice></div>\"\r\n"
+				+ "		<h3 id=\"welcome\">WELCOME " + u.getFirstName() + " " + u.getLastName() + "</h3>"
+				+ "		<div id=block>\r\n"
+				+ "			<div id=choice></div>\r\n"
+				+ "			<div id=selection></div>\r\n"
 				+ "		</div>"
 				+ "</body>"
 				+ "</html>");

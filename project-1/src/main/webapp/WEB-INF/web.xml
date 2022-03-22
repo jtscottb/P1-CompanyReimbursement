@@ -25,19 +25,53 @@
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Employee</servlet-name>
-    <servlet-class>com.revature.servlets.Employee</servlet-class>
+    <description></description>
+    <display-name>UpdateInfo</display-name>
+    <servlet-name>UpdateInfo</servlet-name>
+    <servlet-class>com.revature.servlets.UpdateInfo</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Employee</servlet-name>
-    <url-pattern>/Employee</url-pattern>
+    <servlet-name>UpdateInfo</servlet-name>
+    <url-pattern>/UpdateInfo</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Manager</servlet-name>
-    <servlet-class>com.revature.servlets.Manager</servlet-class>
+    <description></description>
+    <display-name>UpdateSetup</display-name>
+    <servlet-name>UpdateSetup</servlet-name>
+    <servlet-class>com.revature.servlets.UpdateSetup</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Manager</servlet-name>
-    <url-pattern>/Manager</url-pattern>
+    <servlet-name>UpdateSetup</servlet-name>
+    <url-pattern>/UpdateSetup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyPendingRequests</display-name>
+    <servlet-name>MyPendingRequests</servlet-name>
+    <servlet-class>com.revature.servlets.MyPendingRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyPendingRequests</servlet-name>
+    <url-pattern>/MyPendingRequests</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyResolvedRequests</display-name>
+    <servlet-name>MyResolvedRequests</servlet-name>
+    <servlet-class>com.revature.servlets.MyResolvedRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyResolvedRequests</servlet-name>
+    <url-pattern>/MyResolvedRequests</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyProfile</display-name>
+    <servlet-name>MyProfile</servlet-name>
+    <servlet-class>com.revature.servlets.MyProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyProfile</servlet-name>
+    <url-pattern>/MyProfile</url-pattern>
   </servlet-mapping>
 </web-app>

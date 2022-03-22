@@ -3,6 +3,7 @@ package com.revature;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.dao.UsersDao;
 import com.revature.exceptions.InvalidCredentialsException;
 import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.service.EmployeeService;
@@ -18,14 +19,15 @@ public class Driver {
 		List<User> list = new ArrayList<User>();
 		List<Reimbursement> list2 = new ArrayList<Reimbursement>();
 		User u = new User();
+		UsersDao ud = new UsersDao();
 		Reimbursement r = new Reimbursement();
 		Table t = new Table();
 		String table = null;
 		
 		u.setEmail("e");
-		u.setFname("f");
+		u.setFirstName("f");
 		u.setId(24);
-		u.setLname("l");
+		u.setLastName("l");
 		u.setPassword("p");
 		u.setRole("r");
 		u.setRoleId(2);
@@ -92,20 +94,22 @@ public class Driver {
 //		}
 //		System.out.println(table);
 		
-		String username = "JTSCOTTB";
-		String password = "passwords";
-		Startup s = new Startup();
-		try {
-			System.out.println(s.login(username, password));
-		} catch (InvalidCredentialsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			System.out.println(s.register(u));
-		} catch (UsernameAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String username = "USER1";
+//		String password = "password";
+//		Startup s = new Startup();
+//		try {
+//			System.out.println(s.login(username, password));
+//		} catch (InvalidCredentialsException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			System.out.println(s.register(u));
+//		} catch (UsernameAlreadyExistsException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		ud.removeCurrentUser(u);
 	}
 }

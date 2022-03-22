@@ -47,8 +47,8 @@ public class Register extends HttpServlet {
 		
 		u.setUsername(request.getParameter("uname").toUpperCase());
 		u.setPassword(request.getParameter("pword"));
-		u.setFname(request.getParameter("fname").toUpperCase());
-		u.setLname(request.getParameter("lname").toUpperCase());
+		u.setFirstName(request.getParameter("fname").toUpperCase());
+		u.setLastName(request.getParameter("lname").toUpperCase());
 		u.setEmail(request.getParameter("email"));
 		u.setRoleId(Integer.parseInt(request.getParameter("role")));
 		

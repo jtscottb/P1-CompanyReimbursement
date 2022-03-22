@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +64,7 @@ public class ReimbursementDao {
 	}
 	
 	public List<Reimbursement> getAllReimbursements() {
-		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> reimbursements = new ArrayList<>();
 		UsersDao ud = new UsersDao();
 		String query = "select * from reimbursement "
 						+ "inner join status on reimbursement.status_id=status.statusid "
@@ -75,9 +74,10 @@ public class ReimbursementDao {
 			rs = stmt.executeQuery(query);
 			while(rs.next()) {
 				Reimbursement r = new Reimbursement();
+				r.setId(rs.getInt("id"));
 				r.setAmount(rs.getDouble("amount"));
-				r.setSubmitted((LocalDateTime) rs.getTimestamp("submitted").toLocalDateTime());
-				r.setResolved((LocalDateTime) rs.getTimestamp("resolved").toLocalDateTime());
+				r.setSubmitted(rs.getTimestamp("submitted").toLocalDateTime());
+				r.setResolved(rs.getTimestamp("resolved").toLocalDateTime());
 				r.setDescription(rs.getString("description"));
 				r.setAuthorId(rs.getInt("author"));
 				r.setResolverId(rs.getInt("resolver"));
@@ -86,8 +86,8 @@ public class ReimbursementDao {
 				r.setStatusId(rs.getInt("status_id"));
 				r.setStatus(rs.getString("status"));
 				
-				String author = ud.getUser(r.getAuthorId()).getFname() + " " + ud.getUser(r.getAuthorId()).getLname();
-				String resolver = ud.getUser(r.getResolverId()).getFname() + " " + ud.getUser(r.getResolverId()).getLname();
+				String author = ud.getUser(r.getAuthorId()).getFirstName() + " " + ud.getUser(r.getAuthorId()).getLastName();
+				String resolver = ud.getUser(r.getResolverId()).getFirstName() + " " + ud.getUser(r.getResolverId()).getLastName();
 				r.setAuthorName(author);
 				r.setResolverName(resolver);
 				
@@ -114,7 +114,7 @@ public class ReimbursementDao {
 	
 	public List<Reimbursement> getReimbursementsByUser(int id) {
 		List<Reimbursement> reimbursements = getAllReimbursements();
-		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<>();
 		for(Reimbursement r : reimbursements) {
 			if(r.getAuthorId().equals(id)) {
 				myReimbursements.add(r);
@@ -125,7 +125,7 @@ public class ReimbursementDao {
 	
 	public List<Reimbursement> getReimbursementsByStatus(int status) {
 		List<Reimbursement> reimbursements = getAllReimbursements();
-		List<Reimbursement> myReimbursements = new ArrayList<Reimbursement>();
+		List<Reimbursement> myReimbursements = new ArrayList<>();
 		for(Reimbursement r : reimbursements) {
 			if(r.getStatusId().equals(status)) {
 				myReimbursements.add(r);
