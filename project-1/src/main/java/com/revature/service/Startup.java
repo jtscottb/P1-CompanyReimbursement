@@ -15,10 +15,11 @@ public class Startup {
 	public User login(String uname, String pword) throws InvalidCredentialsException {
 		UsersDao ud = new UsersDao();
 		User u = ud.getUser(uname, pword);
+		
 		if(!Objects.isNull(ud.getCurrentUser())) {
 			ud.removeCurrentUser();
 		}
-		if(Objects.isNull(u)) {
+		if(Objects.isNull(u.getId())) {
 			throw new InvalidCredentialsException("Invalid username or password");
 		} else {
 			ud.setCurrentUser(u);

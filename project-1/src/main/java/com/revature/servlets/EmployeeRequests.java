@@ -38,7 +38,7 @@ public class EmployeeRequests extends HttpServlet {
 		String table = t.generateHTMLTable(ms.viewAllEmployees());
 		
 	    String reimb = "<label for=empid>Employee #</label> <br>"
-	    				+ "<input type=text id=empid name=empid> <br> <br>";
+	    				+ "<input type=text id=empid name=empid required> <br> <br>";
 
 	    String submit = "<input type=submit value=Submit>";
 	    
@@ -64,9 +64,16 @@ public class EmployeeRequests extends HttpServlet {
 		
 		int empId = Integer.parseInt(request.getParameter("empid"));
 		User u = ud.getUser(empId);
-		String table = t.generateHTMLTable(ms.viewEmployeeRequests(u));
+		String content = null;
+		try {
+			String table = t.generateHTMLTable(ms.viewEmployeeRequests(u));
+			content = table;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			content = "Employee has no reimbursement requests";
+		}
 		
-		String content = table;
 	    String role = user.getRole();
 	    String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("message", message);

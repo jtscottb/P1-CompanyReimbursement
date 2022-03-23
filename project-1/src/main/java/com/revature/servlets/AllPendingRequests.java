@@ -36,12 +36,21 @@ public class AllPendingRequests extends HttpServlet {
 		ManagerService ms = new ManagerService();
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
-		String table = t.generateHTMLTable(ms.viewAllPendingRequests());
+		
+		String content = null;
+		try {
+			String table = t.generateHTMLTable(ms.viewAllPendingRequests());
+			content = table;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			content = "There are no pending reimbursement requests";
+		}
 		
 		String role = user.getRole();
 		String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("message", message);
-		request.setAttribute("content", table);
+		request.setAttribute("content", content);
 		getServletContext().getRequestDispatcher("/" + role.toLowerCase() + ".jsp").forward(request, response);
 	}
 

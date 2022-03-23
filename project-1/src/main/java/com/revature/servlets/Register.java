@@ -36,19 +36,19 @@ public class Register extends HttpServlet {
 				    + "<label for=role2>MANAGER</label> <br> <br>";
 
 	    String uname = "<label for=uname>Username</label> <br>"
-	    			+ "<input type=text id=uname name=uname placeholder=user> <br> <br>";
+	    			+ "<input type=text id=uname name=uname placeholder=user required> <br> <br>";
 
 	    String pword = "<label for=pword>Password</label> <br>"
-	    			+ "<input type=password id=pword name=pword placeholder=password> <br> <br>";
+	    			+ "<input type=password id=pword name=pword placeholder=password required> <br> <br>";
 
 	    String fname = "<label for=fname>First Name</label> <br>"
-	    			+ "<input type=text id=fname name=fname placeholder='first name'> <br> <br>";
+	    			+ "<input type=text id=fname name=fname placeholder='first name' required> <br> <br>";
 
 	    String lname = "<label for=lname>Last Name</label> <br>"
-	    			+ "<input type=text id=lname name=lname placeholder='last name'> <br> <br>";
+	    			+ "<input type=text id=lname name=lname placeholder='last name' required> <br> <br>";
 
 	    String email = "<label for=email>Email</label> <br>"
-	    			+ "<input type=email id=email name=email placeholder=user@email.com> <br> <br>";
+	    			+ "<input type=email id=email name=email placeholder=user@email.com required> <br> <br>";
 	    
 	    String submit = "<input type=submit value=Register>";
 	    

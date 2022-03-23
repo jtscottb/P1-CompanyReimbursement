@@ -37,21 +37,29 @@ public class ApproveDeny extends HttpServlet {
 		Table t = new Table();
 		ManagerService ms = new ManagerService();
 		
-		String table = t.generateHTMLTable(ms.viewAllPendingRequests());
+		String content = null;
+		try {
+			String table = t.generateHTMLTable(ms.viewAllPendingRequests());
+			
+			String reimb = "<label for=reimb>Reimbursement #</label> <br>"
+    				+ "<input type=text id=reimb name=reimb required> <br> <br>";
+    
+		    String status = "<input type=radio id=approve name=status value=1 checked>"
+						    + "<label for=approve>APPROVE</label> &nbsp; &nbsp;"
+						    + "<input type=radio id=deny name=status value=2>"
+						    + "<label for=deny>DENY</label> <br> <br>";
 		
-	    String reimb = "<label for=reimb>Reimbursement #</label> <br>"
-	    				+ "<input type=text id=reimb name=reimb> <br> <br>";
-	    
-	    String status = "<input type=radio id=approve name=status value=1 checked>"
-					    + "<label for=approve>APPROVE</label> &nbsp; &nbsp;"
-					    + "<input type=radio id=deny name=status value=2>"
-					    + "<label for=deny>DENY</label> <br> <br>";
-
-	    String submit = "<input type=submit value=Submit>";
-	    
-	    String form = "<form action=./ApproveDeny method=post>" + reimb + status + submit + "</form>";
-	    
-	    String content = table + form;
+		    String submit = "<input type=submit value=Submit>";
+		    
+		    String form = "<form action=./ApproveDeny method=post>" + reimb + status + submit + "</form>";
+		    
+			content = table + form;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			content = "There are no pending reimbursement requests";
+		}
+		
 	    String role = user.getRole();
 	    String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("message", message);

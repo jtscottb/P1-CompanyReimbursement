@@ -90,6 +90,7 @@ public class UsersDao {
 	
 	public User getUser(String uname, String pword) {
 		User u = new User();
+		User user = new User();
 		String query = "select * from users "
 						+ "inner join roles on users.role_id = roles.roleid "
 						+ "where username=?";
@@ -99,17 +100,18 @@ public class UsersDao {
 			pstmt.setString(1, uname);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				u.setId(rs.getInt("userid"));
-				u.setUsername(rs.getString("username"));
-				u.setPassword(rs.getString("password"));
-				u.setFirstName(rs.getString("firstname"));
-				u.setLastName(rs.getString("lastname"));
-				u.setEmail(rs.getString("email"));
-				u.setRoleId(rs.getInt("role_id"));
-				u.setRole(rs.getString("role"));
-			}
-			if(!u.getPassword().equals(pword)) {
-				u = null;
+				user.setId(rs.getInt("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setEmail(rs.getString("email"));
+				user.setRoleId(rs.getInt("role_id"));
+				user.setRole(rs.getString("role"));
+				
+				if(user.getPassword().equals(pword)) {
+					u = user;
+				}
 			}
 		} catch(SQLException e) {
 			// TODO Auto-generated catch block

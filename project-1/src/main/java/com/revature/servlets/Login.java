@@ -33,9 +33,9 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = "<label for=uname>Username</label> <br>"
-						+ "<input type=text id=uname name=uname> <br> <br>";
+						+ "<input type=text id=uname name=uname required> <br> <br>";
 		String password = "<label for=pword>Password</label> <br>"
-			    		+ "<input type=password id=pword name=pword> <br> <br>";
+			    		+ "<input type=password id=pword name=pword required> <br> <br>";
 		String submit = "<input type=submit value=Login>";
 		String form = "<form action=./Login method=post>" + username + password + submit + "</form>";
 		

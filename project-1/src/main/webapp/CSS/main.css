@@ -22,6 +22,10 @@ body {
     border: 3px;
     margin: 7px;
 }
+#choice button:hover {
+    background-color: darkgreen;
+    color: bisque;
+}
 
 #selection {
     width: 100%;
@@ -31,6 +35,7 @@ body {
 table {
 	border: 5px solid;
     border-color: green;
+    border-collapse: collapse;
     background-color: white !important;
     color: black !important;
     text-align: center;
@@ -39,7 +44,6 @@ th, td {
 	padding: 5px;
 	border: 2px solid;
 	border-color: black;
-	border-collapse: collapse;
 }
 tr:hover {background-color: red;}
 
