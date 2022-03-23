@@ -13,11 +13,12 @@
 		<div id="block">
 			<h3 id="message">${message}</h3>
 			<div id="choice">
-				<button onclick=Login()>Login</button>
+				<a href="./Login"><button>Login</button></a>
 				<br> <br>
-				<button onclick=Register()>Register</button>
+				<a href="./Register"><button>Register</button></a>
 			</div>
 		</div>
-		<div id="selection"></div>
+		<br> <br>
+		<div id="selection">${content}</div>
 	</body>
 </html>

@@ -1,7 +1,6 @@
 package com.revature.servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,17 +10,18 @@ import com.revature.Table;
 import com.revature.User;
 import com.revature.dao.UsersDao;
 import com.revature.service.EmployeeService;
+import com.revature.service.ManagerService;
 
 /**
- * Servlet implementation class MyPendingRequests
+ * Servlet implementation class AllResolvedRequests
  */
-public class MyPendingRequests extends HttpServlet {
+public class AllResolvedRequests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPendingRequests() {
+    public AllResolvedRequests() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +33,10 @@ public class MyPendingRequests extends HttpServlet {
 		// TODO Auto-generated method stub
 		Table t = new Table();
 		EmployeeService es = new EmployeeService();
+		ManagerService ms = new ManagerService();
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
-		String table = t.generateHTMLTable(es.viewPendingRequests(user));
+		String table = t.generateHTMLTable(ms.viewAllResolvedRequests());
 		
 		String role = user.getRole();
 		String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();

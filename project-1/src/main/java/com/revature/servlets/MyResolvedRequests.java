@@ -39,11 +39,9 @@ public class MyResolvedRequests extends HttpServlet {
 		
 		String role = user.getRole();
 		String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
-		request.setAttribute("role", role.toUpperCase());
 		request.setAttribute("message", message);
-		request.setAttribute("js", role.toLowerCase() + ".js");
 		request.setAttribute("content", table);
-		getServletContext().getRequestDispatcher("/entry.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/" + role.toLowerCase() + ".jsp").forward(request, response);
 	}
 
 	/**

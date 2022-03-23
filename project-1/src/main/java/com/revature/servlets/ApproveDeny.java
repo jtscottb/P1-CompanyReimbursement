@@ -1,29 +1,28 @@
 package com.revature.servlets;
 
 import java.io.IOException;
-import java.io.InputStream;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import com.revature.Reimbursement;
+import com.revature.Table;
 import com.revature.User;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dao.UsersDao;
+import com.revature.service.ManagerService;
 
 /**
- * Servlet implementation class SubmitReimbursement
+ * Servlet implementation class ApproveDeny
  */
-public class SubmitReimbursement extends HttpServlet {
+public class ApproveDeny extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubmitReimbursement() {
+    public ApproveDeny() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,29 +34,24 @@ public class SubmitReimbursement extends HttpServlet {
 		// TODO Auto-generated method stub
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
+		Table t = new Table();
+		ManagerService ms = new ManagerService();
 		
-	    String amount = "<label for=amount>Amount</label> <br>"
-	    				+ "<input type=text id=amount name=amount> <br> <br>";
-
-	    String description = "<label for=description>Description</label> <br>"
-	    					+ "<textarea id=description name=description></textarea> <br> <br>";
-
-	    String type = "<label for=type>Type</label> <br>"
-	    			+ "<select id=type name=type>"
-	    			+ " <option value=1>Food</option>"
-	    			+ " <option value=2>Lodging</option>"
-	    			+ " <option value=3>Travel</option>"
-	    			+ " <option value=4>Other</option>"
-	    			+ "</select> <br> <br>";
-
-	    String image = "<label for=image>Upload Receipt</label> <br>"
-	    			+ "<input type=file id=image name=image> <br> <br>";
+		String table = t.generateHTMLTable(ms.viewAllPendingRequests());
+		
+	    String reimb = "<label for=reimb>Reimbursement #</label> <br>"
+	    				+ "<input type=text id=reimb name=reimb> <br> <br>";
+	    
+	    String status = "<input type=radio id=approve name=status value=1 checked>"
+					    + "<label for=approve>APPROVE</label> &nbsp; &nbsp;"
+					    + "<input type=radio id=deny name=status value=2>"
+					    + "<label for=deny>DENY</label> <br> <br>";
 
 	    String submit = "<input type=submit value=Submit>";
 	    
-	    String form = "<form action=./SubmitReimbursement method=post>" + amount + description + type + image + submit + "</form>";
+	    String form = "<form action=./ApproveDeny method=post>" + reimb + status + submit + "</form>";
 	    
-	    String content = form;
+	    String content = table + form;
 	    String role = user.getRole();
 	    String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("message", message);
@@ -70,29 +64,25 @@ public class SubmitReimbursement extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UsersDao ud = new UsersDao();
-		User user = ud.getCurrentUser();
 		Reimbursement r = new Reimbursement();
 		ReimbursementDao rd = new ReimbursementDao();
+		UsersDao ud = new UsersDao();
+		User user = ud.getCurrentUser();
 		
-		InputStream is = null;
-		r.setAmount(Double.parseDouble(request.getParameter("amount")));
-		r.setDescription(request.getParameter("description"));
-		r.setTypeId(Integer.parseInt(request.getParameter("type")));
-//		Part photo = request.getPart("image");
-//		if(photo != null) {
-//			r.setImage(is = photo.getInputStream());
-//		}
-		r.setAuthorId(user.getId());
-		r.setStatusId(3);
-		r.setSubmitted();
+		int reimbId = Integer.parseInt(request.getParameter("reimb"));
+		int statusId = Integer.parseInt(request.getParameter("status"));
+		r = rd.getReimbursement(reimbId);
+		r.setStatusId(statusId);
+		r.setResolved();
+		r.setResolverId(user.getId());
+		rd.updateReimbursement(r);
+		String status = statusId == 1 ? "APPROVED" : "DENIED";
 		
-		rd.addReimbursement(r);
-		
-		String role = user.getRole();
-		String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
+		String content = "Reimbursement " + status;
+	    String role = user.getRole();
+	    String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("message", message);
-		request.setAttribute("content", "Reimbursement Submitted");
+	    request.setAttribute("content", content);
 		getServletContext().getRequestDispatcher("/" + role.toLowerCase() + ".jsp").forward(request, response);
 	}
 

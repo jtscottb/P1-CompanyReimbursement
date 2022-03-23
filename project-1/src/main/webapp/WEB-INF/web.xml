@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://JAVA.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <welcome-file-list>
-    
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -73,5 +72,55 @@
   <servlet-mapping>
     <servlet-name>SubmitReimbursement</servlet-name>
     <url-pattern>/SubmitReimbursement</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllPendingRequests</display-name>
+    <servlet-name>AllPendingRequests</servlet-name>
+    <servlet-class>com.revature.servlets.AllPendingRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllPendingRequests</servlet-name>
+    <url-pattern>/AllPendingRequests</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllResolvedRequests</display-name>
+    <servlet-name>AllResolvedRequests</servlet-name>
+    <servlet-class>com.revature.servlets.AllResolvedRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllResolvedRequests</servlet-name>
+    <url-pattern>/AllResolvedRequests</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllEmployees</display-name>
+    <servlet-name>AllEmployees</servlet-name>
+    <servlet-class>com.revature.servlets.AllEmployees</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllEmployees</servlet-name>
+    <url-pattern>/AllEmployees</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApproveDeny</display-name>
+    <servlet-name>ApproveDeny</servlet-name>
+    <servlet-class>com.revature.servlets.ApproveDeny</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApproveDeny</servlet-name>
+    <url-pattern>/ApproveDeny</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeRequests</display-name>
+    <servlet-name>EmployeeRequests</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeRequests</servlet-name>
+    <url-pattern>/EmployeeRequests</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -30,7 +30,33 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	    String role = "<input type=radio id=role1 name=role value=1 checked>"
+				    + "<label for=role1>EMPLOYEE</label> &nbsp; &nbsp;"
+				    + "<input type=radio id=role2 name=role value=2>"
+				    + "<label for=role2>MANAGER</label> <br> <br>";
+
+	    String uname = "<label for=uname>Username</label> <br>"
+	    			+ "<input type=text id=uname name=uname placeholder=user> <br> <br>";
+
+	    String pword = "<label for=pword>Password</label> <br>"
+	    			+ "<input type=password id=pword name=pword placeholder=password> <br> <br>";
+
+	    String fname = "<label for=fname>First Name</label> <br>"
+	    			+ "<input type=text id=fname name=fname placeholder='first name'> <br> <br>";
+
+	    String lname = "<label for=lname>Last Name</label> <br>"
+	    			+ "<input type=text id=lname name=lname placeholder='last name'> <br> <br>";
+
+	    String email = "<label for=email>Email</label> <br>"
+	    			+ "<input type=email id=email name=email placeholder=user@email.com> <br> <br>";
+	    
+	    String submit = "<input type=submit value=Register>";
+	    
+	    String form = "<form action=./Register method=post>" + role + uname + pword + fname + lname + email + submit + "</form>";
+	    
+	    String content = form;
+		request.setAttribute("content", content);
+		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	/**

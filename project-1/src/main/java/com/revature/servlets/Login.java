@@ -32,8 +32,16 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		String username = "<label for=uname>Username</label> <br>"
+						+ "<input type=text id=uname name=uname> <br> <br>";
+		String password = "<label for=pword>Password</label> <br>"
+			    		+ "<input type=password id=pword name=pword> <br> <br>";
+		String submit = "<input type=submit value=Login>";
+		String form = "<form action=./Login method=post>" + username + password + submit + "</form>";
+		
+		String content = form;
+		request.setAttribute("content", content);
+		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	/**
@@ -58,7 +66,7 @@ public class Login extends HttpServlet {
 			request.setAttribute("role", role.toUpperCase());
 			request.setAttribute("message", message);
 			request.setAttribute("js", role.toLowerCase() + ".js");
-			getServletContext().getRequestDispatcher("/entry.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/" + role.toLowerCase() + ".jsp").forward(request, response);
 		} catch (InvalidCredentialsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

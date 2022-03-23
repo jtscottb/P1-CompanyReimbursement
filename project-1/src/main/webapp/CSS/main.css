@@ -11,10 +11,10 @@ body {
 #choice {
     margin: auto;
     text-align: center;
-    float: left;
     background-color: gray !important;
     width: 20em;
     height: 100%;
+    float: left;
 }
 
 #choice button {
@@ -24,14 +24,13 @@ body {
 }
 
 #selection {
+    width: 100%;
     text-align: left;
-    width: auto;
 }
 
 table {
 	border: 5px solid;
     border-color: green;
-    width: 100%;
     background-color: white !important;
     color: black !important;
     text-align: center;

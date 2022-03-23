@@ -25,11 +25,25 @@ public class ManagerService {
 		return updated;
 	}
 	
-	public List<Reimbursement> viewAllRequestsByStatus(int status) {
+	public List<Reimbursement> viewAllPendingRequests() {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 		ReimbursementDao rd = new ReimbursementDao();
 		try {
-			reimbursements = rd.getReimbursementsByStatus(status);
+			reimbursements = rd.getReimbursementsByStatus(3);
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			System.out.println("No reimbursements by that type");
+			e.printStackTrace();
+		}
+		return reimbursements;
+	}
+	
+	public List<Reimbursement> viewAllResolvedRequests() {
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		ReimbursementDao rd = new ReimbursementDao();
+		try {
+			reimbursements = rd.getReimbursementsByStatus(1);
+			reimbursements.addAll(rd.getReimbursementsByStatus(2));
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 			System.out.println("No reimbursements by that type");
