@@ -11,16 +11,38 @@ body {
 #choice {
     margin: auto;
     text-align: center;
+    float: left;
+    background-color: gray !important;
+    width: 20em;
+    height: 100%;
+}
+
+#choice button {
+    width: 17em;
+    border: 3px;
+    margin: 7px;
 }
 
 #selection {
     text-align: left;
+    width: auto;
 }
 
 table {
+	border: 5px solid;
+    border-color: green;
     width: 100%;
+    background-color: white !important;
+    color: black !important;
     text-align: center;
 }
+th, td {
+	padding: 5px;
+	border: 2px solid;
+	border-color: black;
+	border-collapse: collapse;
+}
+tr:hover {background-color: red;}
 
 #description
 {
@@ -28,3 +50,9 @@ table {
     width: 300px;
     vertical-align: top;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }

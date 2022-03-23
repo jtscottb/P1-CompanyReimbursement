@@ -1,7 +1,6 @@
 package com.revature.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +45,6 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
 		User u = new User();
 		Startup s = new Startup();
 		
@@ -56,27 +54,18 @@ public class Login extends HttpServlet {
 		try {
 			u = s.login(uname, pword);
 			String role = u.getRole();
-			pw.write("<html>"
-				+ "<head>\r\n"
-				+ "    <meta charset=\"UTF-8\">\r\n"
-				+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
-				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
-				+ "    <title>"+ role.toUpperCase() +" HOME</title>\r\n"
-				+ "    <link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
-				+ "		<script src=\"./JS/" + role.toLowerCase() + ".js\"></script>"
-				+ "</head>"
-				+ "<body onload=\"Load()\">"
-				+ "		<h3 id=\"welcome\">WELCOME " + u.getFirstName() + " " + u.getLastName() + "</h3>"
-				+ "		<div id=block>\r\n"
-				+ "			<div id=choice></div>\r\n"
-				+ "		</div>"
-				+ "		<div id=selection></div>\r\n"
-				+ "</body>"
-				+ "</html>");
+			String message = "WELCOME " + u.getFirstName() + " " + u.getLastName();
+			request.setAttribute("role", role.toUpperCase());
+			request.setAttribute("message", message);
+			request.setAttribute("js", role.toLowerCase() + ".js");
+			getServletContext().getRequestDispatcher("/entry.jsp").forward(request, response);
 		} catch (InvalidCredentialsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			pw.write("<h1>Login Error " + e.getMessage() + "</h1>");
+			String message = e.getMessage();
+			request.setAttribute("load", "Login()");
+			request.setAttribute("message", message);
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 	

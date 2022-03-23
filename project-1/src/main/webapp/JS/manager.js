@@ -1,5 +1,5 @@
 function Logout() {
-    window.location.href = "index.html";
+    window.location.href = "index.jsp";
 }
 
 function ApproveDeny() {

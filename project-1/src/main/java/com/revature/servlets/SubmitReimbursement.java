@@ -1,25 +1,29 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import com.revature.Reimbursement;
 import com.revature.User;
+import com.revature.dao.ReimbursementDao;
 import com.revature.dao.UsersDao;
 
 /**
- * Servlet implementation class UpdateInfo
+ * Servlet implementation class SubmitReimbursement
  */
-public class UpdateInfo extends HttpServlet {
+public class SubmitReimbursement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateInfo() {
+    public SubmitReimbursement() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,26 +43,29 @@ public class UpdateInfo extends HttpServlet {
 		// TODO Auto-generated method stub
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
+		Reimbursement r = new Reimbursement();
+		ReimbursementDao rd = new ReimbursementDao();
 		
-		String username = request.getParameter("uname").toUpperCase();
-		String password = request.getParameter("pword");
-		String firstName = request.getParameter("fname").toUpperCase();
-		String lastName = request.getParameter("lname");
-		String email = request.getParameter("email");
-		user.setUsername(username.isEmpty() ? user.getUsername() : username);
-		user.setPassword(password.isEmpty() ? user.getPassword() : password);
-		user.setFirstName(firstName.isEmpty() ? user.getFirstName() : firstName);
-		user.setLastName(lastName.isEmpty() ? user.getLastName() : lastName);
-		user.setEmail(email.isEmpty() ? user.getEmail() : email);
+		InputStream is = null;
+		r.setAmount(Double.parseDouble(request.getParameter("amount")));
+		r.setDescription(request.getParameter("description"));
+		r.setTypeId(Integer.parseInt(request.getParameter("type")));
+//		Part photo = request.getPart("image");
+//		if(photo != null) {
+//			r.setImage(is = photo.getInputStream());
+//		}
+		r.setAuthorId(user.getId());
+		r.setStatusId(3);
+		r.setSubmitted();
 		
-		ud.updateUser(user);
+		rd.addReimbursement(r);
 		
 		String role = user.getRole();
 		String message = "WELCOME " + user.getFirstName() + " " + user.getLastName();
 		request.setAttribute("role", role.toUpperCase());
 		request.setAttribute("message", message);
 		request.setAttribute("js", role.toLowerCase() + ".js");
-		request.setAttribute("content", "Information updated");
+		request.setAttribute("content", "Reimbursement Submitted");
 		getServletContext().getRequestDispatcher("/entry.jsp").forward(request, response);
 	}
 

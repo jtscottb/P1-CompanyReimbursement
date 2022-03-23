@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.revature.Reimbursement;
 import com.revature.util.ConnectionUtil;
@@ -77,7 +79,8 @@ public class ReimbursementDao {
 				r.setId(rs.getInt("id"));
 				r.setAmount(rs.getDouble("amount"));
 				r.setSubmitted(rs.getTimestamp("submitted").toLocalDateTime());
-				r.setResolved(rs.getTimestamp("resolved").toLocalDateTime());
+				Timestamp resolved = rs.getTimestamp("resolved");
+				r.setResolved(Objects.isNull(resolved) ? null : resolved.toLocalDateTime());
 				r.setDescription(rs.getString("description"));
 				r.setAuthorId(rs.getInt("author"));
 				r.setResolverId(rs.getInt("resolver"));
@@ -87,8 +90,8 @@ public class ReimbursementDao {
 				r.setStatus(rs.getString("status"));
 				
 				String author = ud.getUser(r.getAuthorId()).getFirstName() + " " + ud.getUser(r.getAuthorId()).getLastName();
-				String resolver = ud.getUser(r.getResolverId()).getFirstName() + " " + ud.getUser(r.getResolverId()).getLastName();
 				r.setAuthorName(author);
+				String resolver = ud.getUser(r.getResolverId()).getFirstName() + " " + ud.getUser(r.getResolverId()).getLastName();
 				r.setResolverName(resolver);
 				
 				reimbursements.add(r);

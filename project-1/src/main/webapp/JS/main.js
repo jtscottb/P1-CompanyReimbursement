@@ -1,6 +1,6 @@
 function Login() {
     document.getElementById("choice").innerHTML =
-    "<button onclick=reset()>Go Back</button> <br> <br>"
+    "<button onclick=reset()>Go Back</button> <br>"
 
     + "<h3>Please sign in</h3>"
     + "<form action=./Login method=post>"
@@ -44,5 +44,5 @@ function Register() {
 }
 
 function reset() {
-    window.location.href = "index.html";
+    window.location.href = "index.jsp";
 }

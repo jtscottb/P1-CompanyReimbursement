@@ -1,7 +1,6 @@
 package com.revature.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +39,6 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
 		User u = new User();
 		Startup s = new Startup();
 		
@@ -55,24 +52,15 @@ public class Register extends HttpServlet {
 		
 		try {
 			s.register(u);
-			pw.write("<html>"
-					+ "<head>\r\n"
-					+ "		<meta charset=\"UTF-8\">\r\n"
-					+ "		<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
-					+ "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
-					+ "		<link rel=\"stylesheet\" href=\"./CSS/main.css\">\r\n"
-					+ "		<script src=\"./JS/main.js\"></script>"
-					+ "</head>"
-					+ "<body onload=\"Login()\">"
-					+ "		<div id=block>"
-					+ "			<div id=choice></div>"
-					+ "		</div>"
-					+ "</body>"
-					+ "</html>");
+			request.setAttribute("load", "Login()");
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (UsernameAlreadyExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			pw.write("<h4> Error is " + e.getMessage() + "</h4>");
+			String message = e.getMessage();
+			request.setAttribute("load", "Register()");
+			request.setAttribute("message", message);
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 

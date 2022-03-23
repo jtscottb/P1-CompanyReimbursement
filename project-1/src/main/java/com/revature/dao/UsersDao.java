@@ -42,7 +42,7 @@ public class UsersDao {
 	
 	public int updateUser(User u) {
 		String query = "update users "
-						+ "set username=?, password=?, firstname=?, lastname=?, email=?, role_id=?"
+						+ "set username=?, password=?, firstname=?, lastname=?, email=?, role_id=? "
 						+ "where userid=?";
 		int update = 0;
 

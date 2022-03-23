@@ -1,5 +1,5 @@
 function Logout() {
-    window.location.href = "index.html";
+    window.location.href = "index.jsp";
 }
 
 function SubmitReimbursement() {
@@ -20,6 +20,9 @@ function SubmitReimbursement() {
     + " <option value=4>Other</option>"
     + "</select> <br> <br>"
 
+    + "<label for=image>Upload Receipt</label> <br>"
+    + "<input type=file id=image name=image> <br> <br>"
+
     + "<input type=submit value=Submit>"
     + "</form>";
 }
@@ -39,7 +42,7 @@ function Profile() {
 function UpdateInfo() {
     document.getElementById("selection").innerHTML =
     "<br><br>"
-    + "<form action=./Update method=post>"
+    + "<form action=./UpdateInfo method=post>"
     + "<label for=uname>Username</label> <br>"
     + "<input type=text id=uname name=uname placeholder=user> <br> <br>"
 
@@ -64,13 +67,13 @@ function Load() {
         "<button onclick=SubmitReimbursement()>Submit a Reimbursement Request</button>"
 
         + "<form action=./MyPendingRequests method=get>"
-        + " <button onclick=PendingRequests()>View Pending Requests</button>"
+        + "     <button onclick=PendingRequests()>View Pending Requests</button>"
         + "</form>"
         + "<form action=./MyResolvedRequests method=get>"
-        + " <button onclick=ResolvedRequests()>View Resolved Requests</button>"
+        + "     <button onclick=ResolvedRequests()>View Resolved Requests</button>"
         + "</form>"
         + "<form action=./MyProfile method=get>"
-        + " <button onclick=Profile()>My Profile</button>"
+        + "     <button onclick=Profile()>My Profile</button>"
         + "</form>"
         + "<button onclick=UpdateInfo()>Update Information</button>"
         + "<br>"
