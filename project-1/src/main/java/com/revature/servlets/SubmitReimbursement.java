@@ -33,29 +33,42 @@ public class SubmitReimbursement extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String div = "<div class=\"w-25 mb-3\">";
+		String endDiv = "</div>";
+		
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
 		
-	    String amount = "<label for=amount>Amount</label> <br>"
-	    				+ "<input type=text id=amount name=amount> <br> <br>";
+	    String amount = div
+	    				+ "<label for=amount>Amount: &emsp;$</label>"
+	    				+ "<input type=text id=amount name=amount>"
+	    				+ endDiv;
 
-	    String description = "<label for=description>Description</label> <br>"
-	    					+ "<textarea id=description name=description></textarea> <br> <br>";
+	    String description = div
+	    					+ "<label for=description class=\"form-label\">Description: &emsp;</label>"
+	    					+ "<textarea class=\"form-control\" id=description name=description rows=\"3\"></textarea>"
+	    					+ endDiv;
 
-	    String type = "<label for=type>Type</label> <br>"
+	    String type = div
+	    			+ "<label for=type>Type: &emsp;</label>"
 	    			+ "<select id=type name=type>"
 	    			+ " <option value=1>Food</option>"
 	    			+ " <option value=2>Lodging</option>"
 	    			+ " <option value=3>Travel</option>"
 	    			+ " <option value=4>Other</option>"
-	    			+ "</select> <br> <br>";
+	    			+ "</select>"
+	    			+ endDiv;
 
-	    String image = "<label for=image>Upload Receipt</label> <br>"
-	    			+ "<input type=file id=image name=image> <br> <br>";
+	    String image = div
+	    			+ "<label for=image class=\"form-label\">Upload Receipt</label> <br>"
+	    			+ "<input class=\"form-control\" type=file id=image name=image>"
+	    			+ endDiv;
 
-	    String submit = "<input type=submit value=Submit>";
+	    String submit = div
+	    			+ "<br> <button type=\"submit\" class=\"btn btn-secondary\"> Submit </button>"
+	    			+ endDiv;
 	    
-	    String form = "<form action=./SubmitReimbursement method=post>" + amount + description + type + image + submit + "</form>";
+	    String form = "<form action=./SubmitReimbursement method=post class=\"bg-dark text-info pt-5 pb-5\">" + amount + description + type + image + submit + "</form>";
 	    
 	    String content = form;
 	    String role = user.getRole();

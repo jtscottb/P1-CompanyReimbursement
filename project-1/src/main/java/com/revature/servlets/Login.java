@@ -32,11 +32,24 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = "<label for=uname>Username</label> <br>"
-						+ "<input type=text id=uname name=uname required> <br> <br>";
-		String password = "<label for=pword>Password</label> <br>"
-			    		+ "<input type=password id=pword name=pword required> <br> <br>";
-		String submit = "<input type=submit value=Login>";
+		String div = "<div class=\"form-group row mb-3\">";
+		String col = "<div class=\"col-sm-1 w-25\">";
+		String endDiv = "</div>";
+		
+		String username = div
+						+ "<label for=uname class=\"col-sm-1 col-form-label\">Username:</label>"
+						+ col
+						+ "<input class=\"form-control\" type=text id=uname name=uname required>"
+						+ endDiv + endDiv;
+		
+		String password = div
+						+ "<label for=pword class=\"col-sm-1 col-form-label\">Password:</label>"
+						+ col
+			    		+ "<input class=\"form-control\" type=password id=pword name=pword required>"
+						+ endDiv + endDiv;
+		
+		String submit = "<button type=\"submit\" class=\"btn btn-secondary\"> Login </button>";
+		
 		String form = "<form action=./Login method=post>" + username + password + submit + "</form>";
 		
 		String content = form;

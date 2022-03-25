@@ -30,29 +30,54 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    String role = "<input type=radio id=role1 name=role value=1 checked>"
-				    + "<label for=role1>EMPLOYEE</label> &nbsp; &nbsp;"
-				    + "<input type=radio id=role2 name=role value=2>"
-				    + "<label for=role2>MANAGER</label> <br> <br>";
+		String div = "<div class=\"form-group row mb-3\">";
+		String col = "<div class=\"col-sm-1 w-25\">";
+		String endDiv = "</div>";
+		
+	    String role = "<div class=\"form-check form-check-inline mb-3\">"
+	    			+ "<input class=form-check-input type=radio id=role1 name=role value=1 checked>"
+				    + "<label class=form-check-label for=role1>EMPLOYEE</label> &nbsp; &nbsp;"
+	    			+ endDiv
+	    			+ "<div class=\"form-check form-check-inline\">"
+				    + "<input class=form-check-input type=radio id=role2 name=role value=2>"
+				    + "<label class=form-check-label for=role2>MANAGER</label>"
+				    + endDiv;
 
-	    String uname = "<label for=uname>Username</label> <br>"
-	    			+ "<input type=text id=uname name=uname placeholder=user required> <br> <br>";
+	    String uname = div
+	    			+ "<label for=uname class=\"col-sm-1 col-form-label\">Username:</label>"
+	    			+ col
+	    			+ "<input class=\"form-control\" type=text id=uname name=uname placeholder=username required>"
+	    			+ endDiv + endDiv;
 
-	    String pword = "<label for=pword>Password</label> <br>"
-	    			+ "<input type=password id=pword name=pword placeholder=password required> <br> <br>";
+	    String pword = div
+	    			+ "<label for=pword class=\"col-sm-1 col-form-label\">Password:</label>"
+	    			+ col
+	    			+ "<input class=\"form-control\" type=password id=pword name=pword placeholder=password required>"
+	    			+ endDiv + endDiv;
 
-	    String fname = "<label for=fname>First Name</label> <br>"
-	    			+ "<input type=text id=fname name=fname placeholder='first name' required> <br> <br>";
+	    String fname = div
+	    			+ "<label for=fname class=\"col-sm-1 col-form-label\">First Name:</label>"
+	    			+ col
+	    			+ "<input class=\"form-control\" type=text id=fname name=fname placeholder='first name' required>"
+	    			+ endDiv + endDiv;
 
-	    String lname = "<label for=lname>Last Name</label> <br>"
-	    			+ "<input type=text id=lname name=lname placeholder='last name' required> <br> <br>";
+	    String lname = div
+	    			+ "<label for=lname class=\"col-sm-1 col-form-label\">Last Name:</label>"
+	    			+ col
+	    			+ "<input class=\"form-control\" type=text id=lname name=lname placeholder='last name' required>"
+	    			+ endDiv + endDiv;
 
-	    String email = "<label for=email>Email</label> <br>"
-	    			+ "<input type=email id=email name=email placeholder=user@email.com required> <br> <br>";
+	    String email = div
+	    			+ "<label for=email class=\"col-sm-1 col-form-label\">Email:</label>"
+	    			+ col
+	    			+ "<input class=\"form-control\" type=email id=email name=email placeholder=user@email.com required>"
+	    			+ endDiv + endDiv;
 	    
-	    String submit = "<input type=submit value=Register>";
+	    String submit = "<button type=\"submit\" class=\"btn btn-secondary\"> Register </button>";
 	    
-	    String form = "<form action=./Register method=post>" + role + uname + pword + fname + lname + email + submit + "</form>";
+	    String form = "<form action=./Register method=post>"
+	    			+ role + uname + pword + fname + lname + email + submit
+	    			+ "</form>";
 	    
 	    String content = form;
 		request.setAttribute("content", content);

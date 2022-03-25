@@ -30,6 +30,9 @@ public class EmployeeRequests extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String div = "<div class=\"mb-3\">";
+		String endDiv = "</div>";
+		
 		UsersDao ud = new UsersDao();
 		User user = ud.getCurrentUser();
 		Table t = new Table();
@@ -37,12 +40,16 @@ public class EmployeeRequests extends HttpServlet {
 		
 		String table = t.generateHTMLTable(ms.viewAllEmployees());
 		
-	    String reimb = "<label for=empid>Employee #</label> <br>"
-	    				+ "<input type=text id=empid name=empid required> <br> <br>";
+	    String reimb = div
+	    			+ "<label for=empid>Employee #: &emsp;</label>"
+	    			+ "<input type=text id=empid name=empid required>"
+	    			+ endDiv;
 
-	    String submit = "<input type=submit value=Submit>";
+	    String submit = div
+	    			+ "<br> <button type=\"submit\" class=\"btn btn-secondary\"> Submit </button>"
+	    			+ endDiv;
 	    
-	    String form = "<form action=./EmployeeRequests method=post>" + reimb + submit + "</form>";
+	    String form = "<form action=./EmployeeRequests method=post class=\"bg-dark text-info pt-5 pb-5\">" + reimb + submit + "</form>";
 	    
 	    String content = table + form;
 	    String role = user.getRole();
