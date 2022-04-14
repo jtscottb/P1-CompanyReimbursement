@@ -1,5 +1,5 @@
 function Login() {
-    document.getElementById("choice").innerHTML =
+	document.getElementById("selection").innerHTML =
     "<button onclick=reset()>Go Back</button> <br>"
 
     + "<h3>Please sign in</h3>"
@@ -15,7 +15,7 @@ function Login() {
 }
 
 function Register() {
-    document.getElementById("choice").innerHTML =
+    document.getElementById("selection").innerHTML =
     "<button onclick=reset()>Go Back</button> <br> <br>"
 
     + "<form action=./Register method=post>"
